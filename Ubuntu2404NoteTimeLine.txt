@@ -1,0 +1,123 @@
+1. INTERNET
+
+2. INSTALL CHROME
+download deb file, install: sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+3. Ubuntu use local time on dualboot: timedatectl set-local-rtc 1
+
+4. Uninstall snap, apport, update
+Remove Software Center, Firefos, Help icon from dash, uninstall snapd / software center: sudo apt purge snapd apport update-notifier
+Remove folder via root akses : /var/snap/
+
+5. ZSH:
+Update repo: sudo apt update
+Install: sudo apt install zsh nano curl git irssi
+git clone http://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+git clone http://github.com/zsh-users/zsh-syntax-highlighting.git .zsh-syntax-highlighting
+cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+Open: nano .zshrc
+Change theme to bira, put to last line:
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+chsh -s /usr/bin/zsh
+or
+chsh -s zsh
+
+restart/ logout 
+
+6. Standard Apps
+sudo apt install libreoffice libreoffice-style-sifr gimp gimp-gmic blender inkscape vlc sweethome3d gcompris-qt winff gaupol easytag minder pdfarranger transmission handbrake obs-studio
+
+7. Advanced Apps
+sudo apt install ffmpeg bleachbit scrcpy file-roller rar unrar zip unzip 7zip 7zip-rar gnome-shell-extension-manager alacarte virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso gpart gparted testdisk 
+---------------------
+NOTE***
+On UEFI add password for verify secure boot virtualbox, enter that password on next boot
+
+Wine Support 32 (if error just remove .wine folder at home):
+sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine32:i386
+ 
+ 
+After Install Gnome Shell Extension Manager, install on browse: Dash to Panel, ArcMenu, SerMon (apache2, apparmor, cron, crond, docker, firewalld, mariadb, memcached, mongodb, mysql, postgresql, redis-server)
+disable background service
+
+
+Remove Date on taskbar time: dconf write /org/gnome/desktop/interface/clock-show-date 'false'
+show date: dconf write /org/gnome/desktop/interface/clock-show-date 'true'
+---------------------
+8. Deb Apps
+Font : https://fonts.google.com/specimen/Fira+Code and https://fonts.google.com/specimen/JetBrains+Mono
+VSCode : https://code.visualstudio.com/download
+zoom : https://zoom.us/download
+draw.io : https://www.drawio.com/ or https://github.com/jgraph/drawio-desktop/releases/tag/v24.6.4
+Edge : https://www.microsoft.com/en-us/edge/download
+Packet Tracer
+Winbox : https://mikrotik.com/download
+XDMan : https://xtremedownloadmanager.com/#downloads
+DBeaver : https://dbeaver.io/download/
+Printer Driver: Epson L3210
+
+9. Other Repo App
+Avidemux: sudo add-apt-repository ppa:xtradeb/apps -y
+sudo apt install avidemux-qt avidemux-cli
+
+10. Web Dev
+sudo apt install apache2 mariadb-server composer php php-xml php-dom phpunit php-sqlite3
+
+sudo mysql_secure_installation
+cd /var/www/
+sudo chmod -R 777 html
+cd html
+composer create-project laravel/laravel larapp
+
+11. Mobile Dev
+Android Studio : https://developer.android.com/studio
+Flutter : https://docs.flutter.dev/get-started/install/linux/android or https://docs.flutter.dev/get-started/install/linux
+
+My SetUP:
+cd /opt
+sudo mkdir android
+sudo chmod -R 777 android
+mkdir android/sdk
+mkdir android/StudioProjects
+
+ and flutter on that android folder
+Android Studio
+extract android studio to /opt/android
+run: android studio: /opt/android/android-studio/bin/studio.sh
+set sdk on /opt/android/sdk, let download begin
+install plugin flutter. then open sdk manager, on sdk tools install tab then android sdk command-line...
+try to create flutter project on android studio, set the default project folder to: /opt/android/StudioProjects
+
+Flutter
+extract flutter to /opt/android
+put this line to your shell (bashrc.sh or zshrc.sh) : export PATH="/opt/android/flutter/bin:$PATH"
+
+open new terminal and try this command: flutter doctor
+To disable animations in this tool, use : flutter config --no-cli-animations
+Setup sdk: flutter config --android-sdk /opt/android/sdk
+Then: flutter doctor --android-licenses
+**if only asking for install: sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev
+
+Connect to Github
+create key : ssh-keygen
+add text inside .ssh/*.pub key to gethub setting ssh key
+try to clone : cd /opt/android/StudioProjects
+git clone git@github.com:efreethinx/flutter_kasir_super.git
+open that flutter_kasir_super folder with vscode, open terminal on vscode then: flutter pub get
+
+before you can push do last setting:
+git config --global user.email "you@example.com
+git config --global user.name "Your Name"
+
+that all, happy coding...
+
+
+
+==================================================================================
+Ubuntu listen mic to speaker: 
+install: sudo apt install pavucontrol
+start: pactl load-module module-loopback latency_msec=1
+stop: pactl unload-module module-loopback
+
+There is a flag available under chrome://flags, which specifically addresses the cause of this issue. Visit chrome:/flags in your address bar, then search for "Allow WebRTC to adjust the input volume", and set it to "Disabled". That solved the problem immediately for me.
