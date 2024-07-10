@@ -1,0 +1,74 @@
+1. INTERNET
+
+2. INSTALL CHROME
+download deb file
+
+3. INSTALL OFFICE
+sudo apt install libreoffice libreoffice-style-sifr
+
+4. STANDARD MULTIMEDIA : GIMP, INKSCAPE, BLENDER, VLC
+sudo apt install gimp blender inkscape vlc
+sweet home 3d
+gcompris
+
+5. APPS
+Transmission
+XDMan, additional : sudo apt install ffmpeg
+Avidemux: sudo add-apt-repository ppa:xtradeb/apps -y
+sudo apt install avidemux-qt avidemux-cli
+
+EasyTag : edit mp3 properties
+Gaupol : sub editor
+
+WinFF: media converter
+
+zoom meeting
+
+draw.io
+
+6. TOOLS
+VirtualBox
+Printer: Epson L3210
+Arcieve Manager
+PDF arranger : sudo apt install pdfarranger
+Wine Winbox
+Edge
+Packet Tracer
+Bleachbit
+Scrcpy
+
+
+
+TWEAK
+
+Ubuntu use local time on dualboot: timedatectl set-local-rtc 1
+
+Ubuntu listen mic to speaker: 
+install: sudo apt install pavucontrol
+start: pactl load-module module-loopback latency_msec=1
+stop: pactl unload-module module-loopback
+
+Remove Date on taskbar time: dconf write /org/gnome/desktop/interface/clock-show-date 'false'
+show date: dconf write /org/gnome/desktop/interface/clock-show-date 'true'
+
+uninstall snapd / software center
+
+Icon Menu
+
+Win11 Look Like
+
+ZSH:
+install zsh nano curl git irssi
+git clone http://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+git clone http://github.com/zsh-users/zsh-syntax-highlighting.git .zsh-syntax-highlighting
+cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+Open: nano .zshrc
+Change theme to bira, put to last line:
+source .zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+chsh -s zsh --> chsh -s /usr/bin/zsh
+restart/ logout 
+
+remove apport
+gnome shell extension : dash to panel, arch menu, service monitor (apache2, apparmor, cron, crond, docker, firewalld, mariadb, memcached, mongodb, mysql, postgresql, redis-server)
+disable background service
+
